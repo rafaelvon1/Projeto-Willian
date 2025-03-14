@@ -1,5 +1,7 @@
 package controller;
 
+import model.Model;
+
 public class Controller{
    private String email;
    private char[] senha;
@@ -17,4 +19,8 @@ public class Controller{
     public void setSenha(char[] senha) {
         this.senha = senha.clone();
     }    
+    public void setInserir(){
+        Model cadastro = new Model();
+        cadastro.cadastrar(email, senha); 
+    }
 }   
