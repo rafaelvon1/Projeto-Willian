@@ -2,11 +2,10 @@ package model;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import connect.Conexao;
-import controller.Controller;
+
 
 public class Model {
     public void cadastrar(String email, char[] senha) {
-        Controller controller = new Controller();
         String sql = "INSERT INTO teste (email, senha) VALUES (?, ?)";
 
         PreparedStatement ps = null; 

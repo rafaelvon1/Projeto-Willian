@@ -1,11 +1,11 @@
 package index;
-import view.TelaLogin;
+import view.Telas;
 import controller.Controller;
 //import controller.Controller;
 public class Index {
     public static void main(String[] args){
-        TelaLogin telalogin = new TelaLogin();
-        telalogin.Tela();
+        Telas telalogin = new Telas();
+        telalogin.TelaLogin();
     }
     public void inserindo(String email, char[] senha){
         Controller controller = new Controller();
