@@ -1,4 +1,4 @@
-package index;
+package iniciador;
 import view.Telas;
 import controller.Controller;
 //import controller.Controller;
