@@ -1,5 +1,5 @@
-package controller;
-import model.Model;
+package com.controller;
+import com.model.Model;
 
 public class Controller{
    private String email;

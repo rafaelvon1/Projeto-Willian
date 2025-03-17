@@ -1,7 +1,7 @@
-package view;
+package com.view;
 import javax.swing.*;
 
-import iniciador.Index;
+import com.Index;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -56,7 +56,7 @@ public class Telas {
                 String email = textEmail.getText();
                 char[] senha = textSenha.getPassword();
                 
-                iniciador.Index index = new Index();
+                com.Index index = new Index();
                 index.inserindo(email, senha);
                 // Exibir os dados coletados
                 JOptionPane.showMessageDialog(frame, "Email: " + email + "\nSenha: " + new String(senha));
