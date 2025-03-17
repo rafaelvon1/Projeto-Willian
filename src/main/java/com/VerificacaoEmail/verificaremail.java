@@ -8,7 +8,7 @@ public class verificaremail {
         try {
             Random random = new Random();
 
-            int numeroInteiro = random.nextInt(1000) + 90000;
+            int numeroInteiro = random.nextInt(90000) + 10000;
             SimpleEmail email = new SimpleEmail();
             email.setHostName("smtp.gmail.com");
             email.setSmtpPort(587);
