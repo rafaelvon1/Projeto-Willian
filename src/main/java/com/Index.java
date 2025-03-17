@@ -1,6 +1,6 @@
-package iniciador;
-import view.Telas;
-import controller.Controller;
+package com;
+import com.view.Telas;
+import com.controller.Controller;
 //import controller.Controller;
 public class Index {
     public static void main(String[] args){

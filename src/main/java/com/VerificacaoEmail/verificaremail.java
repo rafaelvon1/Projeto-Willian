@@ -1,18 +1,22 @@
 package com.VerificacaoEmail;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
+import java.util.Random;
 
 public class verificaremail {
     public static void main(String[] args) {
         try {
+            Random random = new Random();
+
+            int numeroInteiro = random.nextInt(1000) + 90000;
             SimpleEmail email = new SimpleEmail();
             email.setHostName("smtp.gmail.com");
             email.setSmtpPort(587);
-            email.setAuthentication("rafaelvon514@gmail.com", ""); // Use App Password se necessário
+            email.setAuthentication(System.getenv("EMAIL"), System.getenv("APP_PASSWORD")); // Use App Password se necessário
             email.setStartTLSRequired(true);
-            email.setFrom("rafaelvon514@gmail.com");
+            email.setFrom(System.getenv("EMAIL"));
             email.setSubject("Teste de Email via Java");
-            email.setMsg("Olá, este é um e-mail enviado usando Apache Commons Email!!!!!!");
+            email.setMsg("seu codigo é: " + numeroInteiro);
             email.addTo("rafaelvon514@gmail.com");
             email.send();
             

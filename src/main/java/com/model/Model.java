@@ -1,7 +1,7 @@
-package model;
+package com.model;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import connect.Conexao;
+import com.connect.Conexao;
 
 
 public class Model {
