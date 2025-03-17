@@ -12,7 +12,7 @@ public class verificaremail {
             email.setStartTLSRequired(true);
             email.setFrom("rafaelvon514@gmail.com");
             email.setSubject("Teste de Email via Java");
-            email.setMsg("Olá, este é um e-mail enviado usando Apache Commons Email!!");
+            email.setMsg("Olá, este é um e-mail enviado usando Apache Commons Email!!!!!!");
             email.addTo("rafaelvon514@gmail.com");
             email.send();
             
