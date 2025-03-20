@@ -7,7 +7,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Telas {
+public class TelaLogin {
+    
 
     public void TelaLogin() {
         ImageIcon imageIcon = new ImageIcon("view\\imagens\\icons8-favicon-16.png"); // Substitua pelo caminho da sua imagem

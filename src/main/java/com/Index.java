@@ -1,11 +1,12 @@
 package com;
-import com.view.Telas;
+import com.view.TelaPrincipal;
+import com.view.TelaLogin;
 import com.controller.Controller;
 //import controller.Controller;
 public class Index {
     public static void main(String[] args){
-        Telas telalogin = new Telas();
-        telalogin.TelaLogin();
+        TelaPrincipal telalogin = new TelaPrincipal();
+        telalogin.TelaPrincipal();
     }
     public void inserindo(String email, char[] senha){
         Controller controller = new Controller();
@@ -13,6 +14,10 @@ public class Index {
         controller.setSenha(senha);
         controller.setInserir();
         
+    }
+    public void Login(){
+        TelaLogin telalogin = new TelaLogin();
+        telalogin.TelaLogin();
     }
     
 }

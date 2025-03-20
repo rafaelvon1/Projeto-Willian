@@ -1,11 +1,12 @@
 package com.view;
+import com.Index;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class HomeScreen extends JFrame {
-    public HomeScreen() {
+public class TelaPrincipal extends JFrame {
+    public void TelaPrincipal() {
         // Configuração da janela
         setTitle("Home - Minha Aplicação");
         setSize(800, 700);
@@ -24,12 +25,12 @@ public class HomeScreen extends JFrame {
         panel.add(titleLabel, BorderLayout.NORTH);
 
         // Botão "Entrar"
-        JButton btnEntrar = new JButton("Entrar");
-        btnEntrar.setFont(new Font("Arial", Font.BOLD, 16));
-        btnEntrar.setBackground(new Color(30, 144, 255));
-        btnEntrar.setForeground(Color.WHITE);
-        btnEntrar.setFocusPainted(false);
-        btnEntrar.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        JButton btnLogin = new JButton("Login");
+        btnLogin.setFont(new Font("Arial", Font.BOLD, 16));
+        btnLogin.setBackground(new Color(30, 144, 255));
+        btnLogin.setForeground(Color.WHITE);
+        btnLogin.setFocusPainted(false);
+        btnLogin.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
 
         JButton btnEntra = new JButton("Entrar");
         btnEntra.setFont(new Font("Arial", Font.BOLD, 16));
@@ -39,9 +40,11 @@ public class HomeScreen extends JFrame {
         btnEntra.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
         
         // Ação do botão
-        btnEntrar.addActionListener(new ActionListener() {
+        btnLogin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Você clicou em Entrar!");
+                Index Login = new Index();
+                Login.Login();
+                dispose();
             }
         });
         btnEntra.addActionListener(new ActionListener() {
@@ -53,21 +56,28 @@ public class HomeScreen extends JFrame {
         // Painel central
         JPanel centerPanel = new JPanel();
         centerPanel.setBackground(new Color(50, 50, 50));
-        centerPanel.add(btnEntrar);
+        centerPanel.add(btnLogin);
         centerPanel.add(btnEntra);
         panel.add(centerPanel, BorderLayout.CENTER);
 
         // Menu
         JMenuBar menuBar = new JMenuBar();
-        JMenu menuArquivo = new JMenu("Arquivo");
-        JMenu menuAjuda = new JMenu("Ajuda");
+        JMenu menuArquivo = new JMenu("Menu");
+        JMenuItem contato = new JMenuItem("Contato");
         JMenuItem sairItem = new JMenuItem("Sair");
+
+        menuArquivo.add(contato);
+        contato.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Email: 5mVb9@example.com \nTelefone: (11) 99999-9999 \nEndereço: Rua dos Bobos,\n nº 0 - São Paulo/SP -\n CEP: 00000-000");
+            }
+        });
+
 
         sairItem.addActionListener(e -> System.exit(0));
         menuArquivo.add(sairItem);
-
         menuBar.add(menuArquivo);
-        menuBar.add(menuAjuda);
+
         setJMenuBar(menuBar);
 
         // Adiciona o painel à janela
@@ -77,7 +87,7 @@ public class HomeScreen extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new HomeScreen());
+        SwingUtilities.invokeLater(() -> new TelaPrincipal());
     }
 }
 
