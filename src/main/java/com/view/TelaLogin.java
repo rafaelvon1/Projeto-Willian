@@ -20,6 +20,7 @@ public class TelaLogin {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 700);
         frame.setLayout(new FlowLayout());
+        frame.setLocationRelativeTo(null);
 
         
         // Criar os componentes
