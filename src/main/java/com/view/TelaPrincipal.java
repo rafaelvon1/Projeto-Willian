@@ -1,4 +1,5 @@
 package com.view;
+
 import com.Index;
 import javax.swing.*;
 import java.awt.*;
@@ -12,53 +13,58 @@ public class TelaPrincipal extends JFrame {
         setSize(800, 700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        setLayout(new BorderLayout());
+        getContentPane().setBackground(new Color(30, 30, 30)); // Fundo escuro
 
-        // Painel principal
-        JPanel panel = new JPanel();
-        panel.setLayout(new BorderLayout());
-        panel.setBackground(new Color(50, 50, 50)); // Cor de fundo escura
+        // Painel superior (Navbar)
+        JPanel navBar = new JPanel();
+        navBar.setLayout(new FlowLayout(FlowLayout.RIGHT)); // Alinha os botões à direita
+        navBar.setBackground(new Color(20, 20, 20)); // Fundo escuro da navbar
+        navBar.setPreferredSize(new Dimension(getWidth(), 60)); // Altura da navbar
 
-        // Título
-        JLabel titleLabel = new JLabel("Bem-vindo à Aplicação", SwingConstants.CENTER);
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 22));
-        titleLabel.setForeground(Color.WHITE);
-        panel.add(titleLabel, BorderLayout.NORTH);
-
-        // Botão "Entrar"
+        // Botão "Login"
         JButton btnLogin = new JButton("Login");
-        btnLogin.setFont(new Font("Arial", Font.BOLD, 16));
-        btnLogin.setBackground(new Color(30, 144, 255));
-        btnLogin.setForeground(Color.WHITE);
-        btnLogin.setFocusPainted(false);
-        btnLogin.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        estilizarBotao(btnLogin);
 
-        JButton btnEntra = new JButton("Entrar");
-        btnEntra.setFont(new Font("Arial", Font.BOLD, 16));
-        btnEntra.setBackground(new Color(30, 144, 255));
-        btnEntra.setForeground(Color.WHITE);
-        btnEntra.setFocusPainted(false);
-        btnEntra.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
-        
-        // Ação do botão
-        btnLogin.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                Index Login = new Index();
-                Login.Login();
-                dispose();
-            }
-        });
-        btnEntra.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Você clicou em Entrar!");
-            }
-        });
+        // Botão "Cadastro"
+        JButton btnCadastro = new JButton("Cadastro");
+        estilizarBotao(btnCadastro);
+
+        // Adiciona botões à navbar
+        navBar.add(btnLogin);
+        navBar.add(btnCadastro);
 
         // Painel central
         JPanel centerPanel = new JPanel();
-        centerPanel.setBackground(new Color(50, 50, 50));
-        centerPanel.add(btnLogin);
-        centerPanel.add(btnEntra);
-        panel.add(centerPanel, BorderLayout.CENTER);
+        centerPanel.setBackground(new Color(30, 30, 30));
+        centerPanel.setLayout(new GridBagLayout()); // Centraliza o título
+
+        // Título centralizado
+        JLabel titleLabel = new JLabel("Bem-vindo à Aplicação");
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 28));
+        titleLabel.setForeground(Color.WHITE);
+        centerPanel.add(titleLabel);
+
+        // Adiciona a navbar e o conteúdo principal
+        add(navBar, BorderLayout.NORTH);
+        add(centerPanel, BorderLayout.CENTER);
+
+        // Ação dos botões
+        btnLogin.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Index login = new Index();
+                login.Login();
+                dispose();
+            }
+        });
+
+        btnCadastro.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Index cadastro = new Index();
+                cadastro.Cadastro();
+                dispose();
+            }
+        });
 
         // Menu
         JMenuBar menuBar = new JMenuBar();
@@ -66,28 +72,32 @@ public class TelaPrincipal extends JFrame {
         JMenuItem contato = new JMenuItem("Contato");
         JMenuItem sairItem = new JMenuItem("Sair");
 
-        menuArquivo.add(contato);
         contato.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Email: 5mVb9@example.com \nTelefone: (11) 99999-9999 \nEndereço: Rua dos Bobos,\n nº 0 - São Paulo/SP -\n CEP: 00000-000");
+                JOptionPane.showMessageDialog(null, "Email: 5mVb9@example.com \nTelefone: (11) 99999-9999 \nEndereço: Rua dos Bobos\n nº 0 - \nSão Paulo/SP - \nCEP: 00000-000");
             }
         });
 
-
         sairItem.addActionListener(e -> System.exit(0));
+        menuArquivo.add(contato);
         menuArquivo.add(sairItem);
         menuBar.add(menuArquivo);
 
         setJMenuBar(menuBar);
 
-        // Adiciona o painel à janela
-        add(panel);
-
         setVisible(true);
+    }
+
+    // Método para estilizar os botões
+    private void estilizarBotao(JButton botao) {
+        botao.setFont(new Font("Arial", Font.BOLD, 14));
+        botao.setBackground(new Color(30, 144, 255));
+        botao.setForeground(Color.WHITE);
+        botao.setFocusPainted(false);
+        botao.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
     }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new TelaPrincipal());
     }
 }
-
