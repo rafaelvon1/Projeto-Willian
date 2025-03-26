@@ -13,27 +13,30 @@ public class TelaLogin {
         JFrame frame = new JFrame("Tela de Login");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 700);
-        frame.setLayout(new GridBagLayout()); // Centralizar tudo na tela
+        frame.setLayout(new GridBagLayout()); // Centraliza tudo na tela
         frame.setLocationRelativeTo(null);
         frame.getContentPane().setBackground(Color.BLACK); // Fundo preto
 
-        // Criar um painel para envolver os campos de email/senha (simulando uma "div")
+        // Criar um painel para envolver os campos (simulando uma "div")
         JPanel painelLogin = new JPanel();
-        painelLogin.setLayout(new GridBagLayout()); // Layout para centralizar os itens
-        painelLogin.setBackground(Color.DARK_GRAY); // Fundo do painel escuro
+        painelLogin.setLayout(new GridBagLayout());
+        painelLogin.setBackground(Color.DARK_GRAY); // Fundo escuro do painel
         painelLogin.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2)); // Borda branca
 
         // Criar os componentes de login
         JLabel labelEmail = new JLabel("Email:");
         JTextField textEmail = new JTextField(20);
+        
         JLabel labelSenha = new JLabel("Senha:");
         JPasswordField textSenha = new JPasswordField(20);
+        
         JButton botaoEnviar = new JButton("Enviar");
         JButton botaoVoltar = new JButton("Voltar");
 
         // Definir cores dos componentes
         labelEmail.setForeground(Color.WHITE);
         labelSenha.setForeground(Color.WHITE);
+
         textEmail.setBackground(Color.LIGHT_GRAY);
         textSenha.setBackground(Color.LIGHT_GRAY);
 
