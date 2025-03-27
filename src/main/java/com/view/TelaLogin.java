@@ -67,8 +67,8 @@ public class TelaLogin {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String email = textEmail.getText();
-                char[] senha = textSenha.getPassword();
-
+                String senha = new String(textSenha.getPassword());
+                
                 
 
                 JOptionPane.showMessageDialog(frame, "Email: " + email + "\nSenha: " + new String(senha));

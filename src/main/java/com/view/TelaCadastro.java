@@ -59,8 +59,11 @@ public class TelaCadastro extends JFrame {
                 String senha = new String(textSenha.getPassword());
 
                 com.Index index = new Index();
-                index.inserindo(nome,email, senha);
-
+                int teste = index.inserindo(nome,email, senha);
+                if(teste == 0){
+                    JOptionPane.showMessageDialog(null, "Erro ao cadastrar!");
+                }
+                
                 JOptionPane.showMessageDialog(null, "Cadastro realizado!\nNome: " + nome + "\nEmail: " + email);
             }
         });
