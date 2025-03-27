@@ -2,9 +2,21 @@ package com.controller;
 import com.model.Model;
 
 public class Controller{
+
+   private String nome;
    private String email;
-   private char[] senha;
-   //inserindo email e
+   private String senha;
+   //--------------------------Filtrando parametros -----------------------------------
+
+
+
+    public String getNome() {
+        return nome;
+    }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
    public String getEmail() {   
        return email;
    }
@@ -12,14 +24,17 @@ public class Controller{
          this.email = email;
     }
     //inserindo senha
-    public char[] getSenha() {
+    public String getSenha() {
         return senha;
     }   
-    public void setSenha(char[] senha) {
-        this.senha = senha.clone();
+    public void setSenha(String senha) {
+        this.senha = senha;
     }    
+    //--------------------------Filtrando parametros -----------------------------------
+    
+    //----------------------inserindo dados----------------
     public void setInserir(){
         Model cadastro = new Model();
-        cadastro.cadastrar(email, senha); 
+        cadastro.cadastrar(nome,email, senha); 
     }
 }   

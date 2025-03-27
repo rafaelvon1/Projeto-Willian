@@ -1,6 +1,9 @@
 package com.view;
 
 import javax.swing.*;
+
+import com.Index;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -54,6 +57,9 @@ public class TelaCadastro extends JFrame {
                 String nome = textNome.getText();
                 String email = textEmail.getText();
                 String senha = new String(textSenha.getPassword());
+
+                com.Index index = new Index();
+                index.inserindo(nome,email, senha);
 
                 JOptionPane.showMessageDialog(null, "Cadastro realizado!\nNome: " + nome + "\nEmail: " + email);
             }

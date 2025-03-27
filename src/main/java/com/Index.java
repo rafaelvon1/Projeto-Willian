@@ -9,8 +9,9 @@ public class Index {
         TelaPrincipal telalogin = new TelaPrincipal();
         telalogin.TelaPrincipal();
     }
-    public void inserindo(String email, char[] senha){
+    public void inserindo(String nome, String email, String senha){
         Controller controller = new Controller();
+        controller.setNome(nome);
         controller.setEmail(email);
         controller.setSenha(senha);
         controller.setInserir();

@@ -69,8 +69,7 @@ public class TelaLogin {
                 String email = textEmail.getText();
                 char[] senha = textSenha.getPassword();
 
-                com.Index index = new Index();
-                index.inserindo(email, senha);
+                
 
                 JOptionPane.showMessageDialog(frame, "Email: " + email + "\nSenha: " + new String(senha));
             }

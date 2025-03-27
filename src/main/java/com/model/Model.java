@@ -5,14 +5,15 @@ import com.connect.Conexao;
 
 
 public class Model {
-    public void cadastrar(String email, char[] senha) {
-        String sql = "INSERT INTO teste (email, senha) VALUES (?, ?)";
+    public void cadastrar(String nome, String email, String senha) {
+        String sql = "INSERT INTO Usuarios ( nome, email, senha) VALUES ( ?, ?, ?)";
 
         PreparedStatement ps = null; 
         try {
             ps = Conexao.getConnection().prepareStatement(sql);  
-            ps.setString(1, email);  
-            ps.setString(2, new String(senha));
+            ps.setString(1, nome); 
+            ps.setString(2, email);  
+            ps.setString(3, senha);
             ps.execute();  
             System.out.println("Cadastro realizado com sucesso!");  
         } catch (SQLException e) {
