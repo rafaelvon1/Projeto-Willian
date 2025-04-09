@@ -7,17 +7,19 @@ public class Conexao {
     private static final String URL = "jdbc:mysql://localhost:3306/ProjetoJava";
     private static final String USER = "root";
     private static final String PASSWORD = "";
-
-    public static Connection getConnection() {
+    
+    public static Connection  getConnection() {
         try {
             // Carrega o driver JDBC
             Class.forName("com.mysql.cj.jdbc.Driver");
             // Retorna a conexão
             return DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (ClassNotFoundException e) {
+            //Erro ao carregar o driver JDBC:
             System.out.println("Erro ao carregar o driver JDBC: " + e.getMessage());
         } catch (SQLException e) {
             System.out.println("Erro ao conectar ao banco de dados: " + e.getMessage());
+            
         }
         return null;
     }
