@@ -33,8 +33,8 @@ public class Controller{
     //--------------------------Filtrando parametros -----------------------------------
     
     //----------------------inserindo dados----------------
-    public Integer setInserir(){
+    public void setInserir(){
         Model cadastro = new Model(); 
-        return cadastro.cadastrar(nome, email, senha);
+        cadastro.cadastrar(this.nome, this.email, this.senha);
     }
 }   

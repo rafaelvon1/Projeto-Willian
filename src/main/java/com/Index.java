@@ -28,12 +28,12 @@ public class Index {
         //verificar se os baguio existe no banco de dados la fio
     }
 
-    public Integer inserindo(String nome, String email, String senha){
+    public void inserindo(String nome, String email, String senha){
         Controller controller = new Controller();
         controller.setNome(nome);
         controller.setEmail(email);
         controller.setSenha(senha);
-        return controller.setInserir();
+        controller.setInserir();
         
     }
     

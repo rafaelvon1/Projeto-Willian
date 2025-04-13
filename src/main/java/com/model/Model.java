@@ -5,7 +5,7 @@ import com.connect.Conexao;
 
 
 public class Model {
-    public Integer cadastrar(String nome, String email, String senha) {
+    public void cadastrar(String nome, String email, String senha) {
         String sql = "INSERT INTO Usuarios ( nome, email, senha) VALUES ( ?, ?, ?)";
 
         PreparedStatement ps = null; 
@@ -17,8 +17,8 @@ public class Model {
             ps.execute();  
             System.out.println("Cadastro realizado com sucesso!");  
         } catch (SQLException e) {
-            return 0;
+            System.out.println("Erro ao cadastrar: " + e.getMessage()); 
         }
-        return 1;
+        
     }
 }
