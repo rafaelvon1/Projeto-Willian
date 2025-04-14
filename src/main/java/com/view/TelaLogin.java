@@ -8,7 +8,7 @@ import com.Index;
 
 public class TelaLogin {
 
-    public void TelaLogin() {
+    public void Login() {
         // Criar a janela principal
         JFrame frame = new JFrame("Tela de Login");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -81,7 +81,7 @@ public class TelaLogin {
             public void actionPerformed(ActionEvent e) {
                 frame.dispose(); // Fecha a tela de login
                 TelaPrincipal telaPrincipal = new TelaPrincipal(); // Voltar para a tela principal
-                telaPrincipal.TelaPrincipal();
+                telaPrincipal.Principal();
             }
         });
 

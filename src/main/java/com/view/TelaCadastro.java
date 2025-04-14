@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class TelaCadastro extends JFrame {
-    public void TelaCadastro() {
+    public void Cadastro() {
         // Configuração da janela
         setTitle("Cadastro - Minha Aplicação");
         setSize(800, 700);
@@ -54,9 +54,46 @@ public class TelaCadastro extends JFrame {
         // Ação do botão "Cadastrar"
         btnCadastrar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String nome = textNome.getText();
-                String email = textEmail.getText();
+                String nome = textNome.getText().toLowerCase();
+                String email = textEmail.getText().toLowerCase();
                 String senha = new String(textSenha.getPassword());
+                
+                if (
+                    nome.isEmpty() || email.isEmpty() || senha.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                else{
+                    // aqui fica com a parte do nome
+                    if (nome.length() > 15 || nome.length() < 5) { 
+                        JOptionPane.showMessageDialog(null, "O nome deve pelo menos estar entre 5 e 15 caracteres!", "Erro", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+
+                    // aqui fica com a parte do email
+                    if (email.length() < 16) {
+                        JOptionPane.showMessageDialog(null, "O email invalido!", "Erro", JOptionPane.ERROR_MESSAGE);
+                        return;
+                
+                    }
+                    else{
+                        if (!email.contains("@gmail.com") ) {
+                            JOptionPane.showMessageDialog(null, "E-mail inválido! Certifique-se de que contém '@' e '.'");
+                            return;
+                        }
+                    }
+
+                    // aqui verifica a parte da senha
+                   
+                    if (senha.length() < 8 || !senha.matches(".*[0-9].*") || !senha.contains("@")) {
+                        JOptionPane.showMessageDialog(null, "Senha fraca! A senha deve ter no mínimo 8 caracteres, incluir pelo menos 1 número e o caractere '@'");
+                        return;
+                    }
+                    
+                }
+                
+
+                
 
                 com.Index index = new Index();
                 index.inserindo(nome,email, senha);
@@ -67,7 +104,7 @@ public class TelaCadastro extends JFrame {
         btnVoltar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 TelaPrincipal telaPrincipal = new TelaPrincipal();
-                telaPrincipal.TelaPrincipal();
+                telaPrincipal.Principal();
                 dispose();
             }
         });

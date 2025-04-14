@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class TelaPrincipal extends JFrame {
-    public void TelaPrincipal() {
+    public void Principal() {
         // Configuração da janela
         setTitle("Home - Minha Aplicação");
         setSize(800, 700);

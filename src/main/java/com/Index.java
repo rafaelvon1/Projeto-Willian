@@ -9,16 +9,16 @@ public class Index {
     //----------------paginas principal login cadastro----------------
     public static void main(String[] args){
         TelaPrincipal telalogin = new TelaPrincipal();
-        telalogin.TelaPrincipal();
+        telalogin.Principal();
     }
     
     public void Login(){
         TelaLogin telalogin = new TelaLogin();
-        telalogin.TelaLogin();
+        telalogin.Login();
     }
     public void Cadastro(){
         TelaCadastro telaCadastro = new TelaCadastro();
-        telaCadastro.TelaCadastro();
+        telaCadastro.Cadastro();
 
     }
 
