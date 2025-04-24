@@ -1,91 +1,118 @@
 package com.view;
 
 import javax.swing.*;
+
+import com.Index;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import com.Index;
 
-public class TelaLogin {
-
+public class TelaLogin extends JFrame {
     public void Login() {
-        // Criar a janela principal
-        JFrame frame = new JFrame("Tela de Login");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 700);
-        frame.setLayout(new GridBagLayout()); // Centraliza tudo na tela
-        frame.setLocationRelativeTo(null);
-        frame.getContentPane().setBackground(Color.BLACK); // Fundo preto
+        // Configuração da janela
+        setTitle("login");
+        setSize(800, 700);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        getContentPane().setBackground(Color.BLACK);
+        setLayout(new GridBagLayout());
 
-        // Criar um painel para envolver os campos (simulando uma "div")
-        JPanel painelLogin = new JPanel();
-        painelLogin.setLayout(new GridBagLayout());
-        painelLogin.setBackground(Color.DARK_GRAY); // Fundo escuro do painel
-        painelLogin.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2)); // Borda branca
+        // Painel central
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setBackground(Color.DARK_GRAY);
+        panel.setBorder(BorderFactory.createEmptyBorder(40, 50, 40, 50));
 
-        // Criar os componentes de login
+        // Título
+        JLabel titleLabel = new JLabel("Login");
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        titleLabel.setForeground(Color.WHITE);
+        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        // Campos de entrada
+       
         JLabel labelEmail = new JLabel("Email:");
+        estilizarLabel(labelEmail);
         JTextField textEmail = new JTextField(20);
-        
+
         JLabel labelSenha = new JLabel("Senha:");
+        estilizarLabel(labelSenha);
         JPasswordField textSenha = new JPasswordField(20);
-        
-        JButton botaoEnviar = new JButton("Enviar");
-        JButton botaoVoltar = new JButton("Voltar");
 
-        // Definir cores dos componentes
-        labelEmail.setForeground(Color.WHITE);
-        labelSenha.setForeground(Color.WHITE);
+        // Botões
+        JButton btnEnviar = new JButton("Enviar");
+        estilizarBotao(btnEnviar);
 
-        textEmail.setBackground(Color.LIGHT_GRAY);
-        textSenha.setBackground(Color.LIGHT_GRAY);
+        JButton btnVoltar = new JButton("Voltar");
+        estilizarBotao(btnVoltar);
+        btnVoltar.setBackground(Color.RED);
 
-        // Configuração do layout para o painel interno (quadrado)
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(10, 10, 10, 10); // Espaçamento interno
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.anchor = GridBagConstraints.CENTER;
-
-        painelLogin.add(labelEmail, gbc);
-        gbc.gridy++;
-        painelLogin.add(textEmail, gbc);
-        gbc.gridy++;
-        painelLogin.add(labelSenha, gbc);
-        gbc.gridy++;
-        painelLogin.add(textSenha, gbc);
-        gbc.gridy++;
-        painelLogin.add(botaoEnviar, gbc);
-        gbc.gridy++;
-        painelLogin.add(botaoVoltar, gbc);
-
-        // Adicionar o painel no centro da tela
-        frame.add(painelLogin);
-
-        // Ação do botão "Enviar"
-        botaoEnviar.addActionListener(new ActionListener() {
-            @Override
+        // Ação do botão "Cadastrar"
+        btnEnviar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String email = textEmail.getText();
+                String email = textEmail.getText().toLowerCase();
                 String senha = new String(textSenha.getPassword());
                 
+                if (
+                    email.isEmpty() || senha.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
                 
-
-                JOptionPane.showMessageDialog(frame, "Email: " + email + "\nSenha: " + new String(senha));
+                com.Index index = new Index();
+                index.VerificacaoExito(email, senha);
+                
+                
             }
         });
 
         // Ação do botão "Voltar"
-        botaoVoltar.addActionListener(new ActionListener() {
-            @Override
+        btnVoltar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                frame.dispose(); // Fecha a tela de login
-                TelaPrincipal telaPrincipal = new TelaPrincipal(); // Voltar para a tela principal
+                TelaPrincipal telaPrincipal = new TelaPrincipal();
                 telaPrincipal.Principal();
+                dispose();
             }
         });
 
-        // Exibir a janela
-        frame.setVisible(true);
+        // Adicionar componentes ao painel
+        panel.add(titleLabel);
+        panel.add(Box.createVerticalStrut(20));
+        panel.add(labelEmail);
+        panel.add(textEmail);
+        panel.add(Box.createVerticalStrut(10));
+        panel.add(labelSenha);
+        panel.add(textSenha);
+        panel.add(Box.createVerticalStrut(30));
+        panel.add(btnEnviar);
+        panel.add(Box.createVerticalStrut(10));
+        panel.add(btnVoltar);
+
+        // Adicionar painel à janela
+        add(panel);
+
+        setVisible(true);
+    }
+
+    // Método para estilizar labels
+    private void estilizarLabel(JLabel label) {
+        label.setFont(new Font("Arial", Font.BOLD, 14));
+        label.setForeground(Color.WHITE);
+        label.setAlignmentX(Component.CENTER_ALIGNMENT);
+    }
+
+    // Método para estilizar botões
+    private void estilizarBotao(JButton botao) {
+        botao.setFont(new Font("Arial", Font.BOLD, 14));
+        botao.setBackground(new Color(30, 144, 255));
+        botao.setForeground(Color.WHITE);
+        botao.setFocusPainted(false);
+        botao.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        botao.setAlignmentX(Component.CENTER_ALIGNMENT);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new TelaCadastro());
     }
 }

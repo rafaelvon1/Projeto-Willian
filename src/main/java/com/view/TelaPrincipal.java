@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 public class TelaPrincipal extends JFrame {
     public void Principal() {
         // Configuração da janela
-        setTitle("Home - Minha Aplicação");
+        setTitle("Homepage");
         setSize(800, 700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);

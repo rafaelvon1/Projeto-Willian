@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 public class TelaCadastro extends JFrame {
     public void Cadastro() {
         // Configuração da janela
-        setTitle("Cadastro - Minha Aplicação");
+        setTitle("Cadastro");
         setSize(800, 700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -63,40 +63,13 @@ public class TelaCadastro extends JFrame {
                     JOptionPane.showMessageDialog(null, "Preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                else{
-                    // aqui fica com a parte do nome
-                    if (nome.length() > 15 || nome.length() < 5) { 
-                        JOptionPane.showMessageDialog(null, "O nome deve pelo menos estar entre 5 e 15 caracteres!", "Erro", JOptionPane.ERROR_MESSAGE);
-                        return;
-                    }
-
-                    // aqui fica com a parte do email
-                    if (email.length() < 16) {
-                        JOptionPane.showMessageDialog(null, "O email invalido!", "Erro", JOptionPane.ERROR_MESSAGE);
-                        return;
                 
-                    }
-                    else{
-                        if (!email.contains("@gmail.com") ) {
-                            JOptionPane.showMessageDialog(null, "E-mail inválido! Certifique-se de que contém '@' e '.'");
-                            return;
-                        }
-                    }
-
-                    // aqui verifica a parte da senha
-                   
-                    if (senha.length() < 8 || !senha.matches(".*[0-9].*") || !senha.contains("@")) {
-                        JOptionPane.showMessageDialog(null, "Senha fraca! A senha deve ter no mínimo 8 caracteres, incluir pelo menos 1 número e o caractere '@'");
-                        return;
-                    }
-                    
-                }
-                
-
-                
-
                 com.Index index = new Index();
                 index.inserindo(nome,email, senha);
+                TelaLogin telaLogin = new TelaLogin();
+                telaLogin.Login();
+                dispose();
+                
             }
         });
 

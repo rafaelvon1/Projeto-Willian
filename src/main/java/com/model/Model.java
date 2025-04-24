@@ -21,4 +21,18 @@ public class Model {
         }
         
     }
+    public void verificar(String email, String senha) {
+        String sql = "SELECT * FROM Usuarios WHERE email = ? AND senha = ?";
+
+        PreparedStatement ps = null; 
+        try {
+            ps = Conexao.getConnection().prepareStatement(sql);  
+            ps.setString(1, email); 
+            ps.setString(2, senha);  
+            ps.execute();  
+            System.out.println("Login realizado com sucesso!");  
+        } catch (SQLException e) {
+            System.out.println("Erro ao logar: " + e.getMessage()); 
+        }
+    }
 }
