@@ -4,7 +4,7 @@ import org.apache.commons.mail.SimpleEmail;
 import java.util.Random;
 
 public class ValidarEmail {
-    public  void  validar(String email) {
+    public  Integer validar(String email) {
         try {
             Random random = new Random();
 
@@ -19,10 +19,11 @@ public class ValidarEmail {
             conta.setMsg("seu codigo é: " + numeroInteiro);
             conta.addTo(email);
             conta.send();
+            return numeroInteiro; // Retorna o código gerado
             
-            System.out.println("E-mail enviado com sucesso!");
         } catch (EmailException e) {
             e.printStackTrace();
         }
+        return 0; // Retorna null em caso de erro
     }
 }

@@ -28,14 +28,27 @@ public class Index {
     //----------------verificaçoes e acesso ao banco de dados e etc----------------
     Controller controller = new Controller();
 
+    public int FormatandoDados(String nome, String email, String senha){
+        if (controller.setSenha(senha)   == 0 || controller.setNome(nome) == 0 || controller.setEmail(email) == 0) {
+            JOptionPane.showMessageDialog(null, "nada inserido no bando de dados", "Erro", JOptionPane.ERROR_MESSAGE);
+            return 0;
+        }
+        else{
+
+        }
+        
+        return 1;
+    }
+
+
+
     public int validarCodigo(String email){
         if (controller.setEmail(email) == 0) {
             //pass
         }
         else{
             System.out.println("caiu aqui");
-            controller.Validar(email);
-            TelaPopupEmail popup = new TelaPopupEmail(null, controller.getEmail());
+            TelaPopupEmail popup = new TelaPopupEmail(null, controller.getEmail(),controller.Validar(email));
             popup.setVisible(true);
             
         }
@@ -59,23 +72,21 @@ public class Index {
     }
 
     public int inserindo(String nome, String email, String senha){
-        
-        
-        if (controller.setSenha(senha)   == 0 || controller.setNome(nome) == 0 || controller.setEmail(email) == 0) {
-            JOptionPane.showMessageDialog(null, "nada inserido no bando de dados", "Erro", JOptionPane.ERROR_MESSAGE);
+        if (FormatandoDados(nome, email, senha) == 0) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
             return 0;
         }
-
         else{
-            //if (controller.Validar(email) == 0) {
-                //JOptionPane.showMessageDialog(null, "E-mail nao verificado!", "Erro", JOptionPane.ERROR_MESSAGE);
-                //return;
-            //}
-            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-            controller.setInserir();
-            
+            if (validarCodigo(email) == 0) {
+                JOptionPane.showMessageDialog(null, "Erro ao validar o código!", "Erro", JOptionPane.ERROR_MESSAGE);
+                return 0;
+            }
             
         }
+        JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+        controller.setInserir();
+            
+
         return 1;
         
     }

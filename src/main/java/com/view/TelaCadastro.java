@@ -61,22 +61,24 @@ public class TelaCadastro extends JFrame {
                     JOptionPane.showMessageDialog(null, "Preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
                     
                 }
-                
-                com.Index index = new Index();
-                if (index.validarCodigo(email) == 0) {
-                    JOptionPane.showMessageDialog(null, "Erro ao validar o código!", "Erro", JOptionPane.ERROR_MESSAGE);
-                    
-                }
                 else{
-                    if (index.inserindo(nome,email, senha) == 0) {
-                        JOptionPane.showMessageDialog(null, "Erro ao inserir no banco de dados!", "Erro", JOptionPane.ERROR_MESSAGE);
+                        com.Index index = new Index();
+                    if (index.validarCodigo(email) == 0) {
+                        JOptionPane.showMessageDialog(null, "Erro ao validar o código!", "Erro", JOptionPane.ERROR_MESSAGE);
                         
                     }
-                    JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso! Verifique seu e-mail para o código de validação.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                    TelaLogin telaLogin = new TelaLogin();
-                    telaLogin.Login();
-                    dispose();
+                    else{
+                        if (index.inserindo(nome,email, senha) == 0) {
+                            JOptionPane.showMessageDialog(null, "Erro ao inserir no banco de dados!", "Erro", JOptionPane.ERROR_MESSAGE);
+                            
+                        }
+                        JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso! Verifique seu e-mail para o código de validação.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                        TelaLogin telaLogin = new TelaLogin();
+                        telaLogin.Login();
+                        dispose();
+                    }
                 }
+                
                     
                 
                 

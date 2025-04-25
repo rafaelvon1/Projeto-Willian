@@ -11,7 +11,7 @@ public class TelaPopupEmail extends JDialog {
         System.out.println("Email: " + email);
     }
 
-    public TelaPopupEmail(JFrame parent, String email) {
+    public TelaPopupEmail(JFrame parent, String email, int codigo) {
         super(parent, "Verificar E-mail", true); // true = modal
         setLayout(new BorderLayout());
         
@@ -30,9 +30,16 @@ public class TelaPopupEmail extends JDialog {
         botaoVerificar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String codigoDigitado = campoCodigo.getText();
+                int codigoDigitado = Integer.parseInt(campoCodigo.getText());
+                if (codigoDigitado == codigo) {
+                    JOptionPane.showMessageDialog(TelaPopupEmail.this, "Código digitado: " + codigoDigitado + "Código correto", "Sucesso", JOptionPane.ERROR_MESSAGE);
+                    return ;
+                    
+                }
                 // Aqui você pode comparar com o código gerado
-                System.out.println("Código digitado: " + codigoDigitado);
+                else {
+                    JOptionPane.showMessageDialog(TelaPopupEmail.this, "Código incorreto", "Erro", JOptionPane.ERROR_MESSAGE);
+                }
                 dispose(); // Fecha a janelinha
             }
         });
