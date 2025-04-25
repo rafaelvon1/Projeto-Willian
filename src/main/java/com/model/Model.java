@@ -15,7 +15,9 @@ public class Model {
             ps.setString(2, email);  
             ps.setString(3, senha);
             ps.execute();  
+            System.out.println("Conexão: " + (System.currentTimeMillis()) + "ms");
             System.out.println("Cadastro realizado com sucesso!");  
+            
         } catch (SQLException e) {
             System.out.println("Erro ao cadastrar: " + e.getMessage()); 
         }

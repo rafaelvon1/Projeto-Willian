@@ -39,12 +39,11 @@ public class Controller{
         }
         return 1;
     }
-
-    public int Validar(String email) {
-        ValidarEmail validar = new ValidarEmail(); 
-        validar.validar(email);
-        return 1;
+    public String getEmail() {
+        return email;
     }
+
+    
     
      //--------------------------senha do usuario -----------------------------------
     public int setSenha(String senha) {
@@ -73,5 +72,10 @@ public class Controller{
     public void verificar(){
         Model verificar = new Model(); 
         verificar.verificar(this.email, this.senha);
+    }
+    public int Validar(String email) {
+        ValidarEmail validar = new ValidarEmail(); 
+        validar.validar(email);
+        return 1;
     }
 }   

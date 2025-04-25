@@ -1,15 +1,13 @@
 package com.view;
-
 import javax.swing.*;
-
 import com.Index;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class TelaCadastro extends JFrame {
     public void Cadastro() {
+        
         // Configuração da janela
         setTitle("Cadastro");
         setSize(800, 700);
@@ -61,14 +59,29 @@ public class TelaCadastro extends JFrame {
                 if (
                     nome.isEmpty() || email.isEmpty() || senha.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
-                    return;
+                    
                 }
                 
                 com.Index index = new Index();
-                index.inserindo(nome,email, senha);
-                TelaLogin telaLogin = new TelaLogin();
-                telaLogin.Login();
-                dispose();
+                if (index.validarCodigo(email) == 0) {
+                    JOptionPane.showMessageDialog(null, "Erro ao validar o código!", "Erro", JOptionPane.ERROR_MESSAGE);
+                    
+                }
+                else{
+                    if (index.inserindo(nome,email, senha) == 0) {
+                        JOptionPane.showMessageDialog(null, "Erro ao inserir no banco de dados!", "Erro", JOptionPane.ERROR_MESSAGE);
+                        
+                    }
+                    JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso! Verifique seu e-mail para o código de validação.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    TelaLogin telaLogin = new TelaLogin();
+                    telaLogin.Login();
+                    dispose();
+                }
+                    
+                
+                
+
+                
                 
             }
         });

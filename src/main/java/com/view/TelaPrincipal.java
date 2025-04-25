@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 
 public class TelaPrincipal extends JFrame {
     public void Principal() {
+        
         // Configuração da janela
         setTitle("Homepage");
         setSize(800, 700);
@@ -100,4 +101,6 @@ public class TelaPrincipal extends JFrame {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new TelaPrincipal());
     }
+   
+
 }

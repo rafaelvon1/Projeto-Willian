@@ -1,9 +1,8 @@
 package com;
 import com.view.TelaPrincipal;
 import com.view.TelaLogin;
-
+import com.view.TelaPopupEmail;
 import javax.swing.JOptionPane;
-
 import com.controller.Controller;
 import com.view.TelaCadastro;
 //import controller.Controller;
@@ -26,8 +25,22 @@ public class Index {
     }
 
     
-    //----------------verificaçoes acesso ao banco de dados e etc----------------
+    //----------------verificaçoes e acesso ao banco de dados e etc----------------
     Controller controller = new Controller();
+
+    public int validarCodigo(String email){
+        if (controller.setEmail(email) == 0) {
+            //pass
+        }
+        else{
+            System.out.println("caiu aqui");
+            controller.Validar(email);
+            TelaPopupEmail popup = new TelaPopupEmail(null, controller.getEmail());
+            popup.setVisible(true);
+            
+        }
+        return 0;
+    }
     public void VerificacaoExito(String email, String senha){
         if (controller.setEmail(email) == 0 || controller.setSenha(senha) == 0) {
             JOptionPane.showMessageDialog(null, "nada inserido no bando de dados", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -45,24 +58,25 @@ public class Index {
         //verificar se os baguio existe no banco de dados la fio
     }
 
-    public void inserindo(String nome, String email, String senha){
+    public int inserindo(String nome, String email, String senha){
         
         
         if (controller.setSenha(senha)   == 0 || controller.setNome(nome) == 0 || controller.setEmail(email) == 0) {
             JOptionPane.showMessageDialog(null, "nada inserido no bando de dados", "Erro", JOptionPane.ERROR_MESSAGE);
-            return;
+            return 0;
         }
 
         else{
-            if (controller.Validar(email) == 0) {
-                JOptionPane.showMessageDialog(null, "E-mail já cadastrado!", "Erro", JOptionPane.ERROR_MESSAGE);
-                return;
-                
-            }
+            //if (controller.Validar(email) == 0) {
+                //JOptionPane.showMessageDialog(null, "E-mail nao verificado!", "Erro", JOptionPane.ERROR_MESSAGE);
+                //return;
+            //}
             JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             controller.setInserir();
             
+            
         }
+        return 1;
         
     }
     
