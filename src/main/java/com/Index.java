@@ -54,9 +54,7 @@ public class Index {
     }
     
     public int validarCodigo(){
-        System.out.println("dentro do validar codigo");
-        System.out.println(this.codigoDigitado);
-        System.out.println("codigo gerado" + this.codigo);
+        
        if (this.codigoDigitado != this.codigo) {
            JOptionPane.showMessageDialog(null, "Codigo Invalido!", "Erro", JOptionPane.ERROR_MESSAGE);
            return 0;
