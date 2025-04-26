@@ -7,7 +7,8 @@ import com.controller.Controller;
 import com.view.TelaCadastro;
 //import controller.Controller;
 public class Index {
-
+    private int codigo;
+    private int codigoDigitado;
     //----------------paginas principal login cadastro----------------
     public static void main(String[] args){
         TelaPrincipal telalogin = new TelaPrincipal();
@@ -29,7 +30,7 @@ public class Index {
     Controller controller = new Controller();
 
     public int FormatandoDados(String nome, String email, String senha){
-        if (controller.setSenha(senha)   == 0 || controller.setNome(nome) == 0 || controller.setEmail(email) == 0) {
+        if (controller.setSenha(nome)   == 0 || controller.setNome(email) == 0 || controller.setEmail(senha) == 0) {
             JOptionPane.showMessageDialog(null, "nada inserido no bando de dados", "Erro", JOptionPane.ERROR_MESSAGE);
             return 0;
         }
@@ -40,20 +41,36 @@ public class Index {
         return 1;
     }
 
-
-
-    public int validarCodigo(String email){
-        if (controller.setEmail(email) == 0) {
-            //pass
-        }
-        else{
-            System.out.println("caiu aqui");
-            TelaPopupEmail popup = new TelaPopupEmail(null, controller.getEmail(),controller.Validar(email));
-            popup.setVisible(true);
-            
-        }
-        return 0;
+    public void enviarCodigo(String email){
+        JOptionPane.showMessageDialog(null, "Um codigo esta sendo enviado, aguarde", "Sucesso", JOptionPane.ERROR_MESSAGE);
+        this.codigo = controller.enviarCodigo(email);
     }
+
+    public void TelaPopup(String email){
+        System.out.println("caiu aqui");
+        int codigo = TelaPopupEmail.abrirPopup(null);
+        this.codigoDigitado = codigo;
+        
+    }
+    
+    public int validarCodigo(){
+        System.out.println("dentro do validar codigo");
+        System.out.println(this.codigoDigitado);
+        System.out.println("codigo gerado" + this.codigo);
+       if (this.codigoDigitado != this.codigo) {
+           JOptionPane.showMessageDialog(null, "Codigo Invalido!", "Erro", JOptionPane.ERROR_MESSAGE);
+           return 0;
+       }
+       else{
+           JOptionPane.showMessageDialog(null, "Codigo valido!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+           //controller.setInserir();
+       }
+        
+       
+       return 1;
+        
+    }
+    
     public void VerificacaoExito(String email, String senha){
         if (controller.setEmail(email) == 0 || controller.setSenha(senha) == 0) {
             JOptionPane.showMessageDialog(null, "nada inserido no bando de dados", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -66,23 +83,12 @@ public class Index {
             
         }
         
-        ;
+        
 
         //verificar se os baguio existe no banco de dados la fio
     }
 
     public int inserindo(String nome, String email, String senha){
-        if (FormatandoDados(nome, email, senha) == 0) {
-            JOptionPane.showMessageDialog(null, "Preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
-            return 0;
-        }
-        else{
-            if (validarCodigo(email) == 0) {
-                JOptionPane.showMessageDialog(null, "Erro ao validar o código!", "Erro", JOptionPane.ERROR_MESSAGE);
-                return 0;
-            }
-            
-        }
         JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
         controller.setInserir();
             
