@@ -30,7 +30,7 @@ public class Index {
     Controller controller = new Controller();
 
     public int FormatandoDados(String nome, String email, String senha){
-        if (controller.setSenha(nome)   == 0 || controller.setNome(email) == 0 || controller.setEmail(senha) == 0) {
+        if (controller.setNome(nome)   == 0 || controller.setEmail(email) == 0 || controller.setSenha(senha) == 0) {
             JOptionPane.showMessageDialog(null, "nada inserido no bando de dados", "Erro", JOptionPane.ERROR_MESSAGE);
             return 0;
         }
