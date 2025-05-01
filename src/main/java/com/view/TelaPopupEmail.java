@@ -67,7 +67,7 @@ public class TelaPopupEmail extends JDialog {
                 if (tempoRestante <= 0) {
                     timer.stop();
                     JOptionPane.showMessageDialog(null, "Tempo expirado! O programa será encerrado.", "Tempo Esgotado", JOptionPane.WARNING_MESSAGE);
-                    System.exit(0);
+                    dispose(); // Fecha o popup
                 }
             }
         });

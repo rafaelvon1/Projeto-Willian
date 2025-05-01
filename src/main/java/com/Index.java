@@ -28,7 +28,7 @@ public class Index {
     
     //----------------verificaçoes e acesso ao banco de dados e etc----------------
     Controller controller = new Controller();
-
+    
     public int FormatandoDados(String nome, String email, String senha){
         if (controller.setNome(nome)   == 0 || controller.setEmail(email) == 0 || controller.setSenha(senha) == 0) {
             JOptionPane.showMessageDialog(null, "nada inserido no bando de dados", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -47,7 +47,6 @@ public class Index {
     }
 
     public void TelaPopup(String email){
-        System.out.println("caiu aqui");
         int codigo = TelaPopupEmail.abrirPopup(null);
         this.codigoDigitado = codigo;
         

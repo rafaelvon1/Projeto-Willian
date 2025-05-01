@@ -1,6 +1,6 @@
 package com.controller;
 import javax.swing.JOptionPane;
-
+import org.mindrot.jbcrypt.BCrypt;
 import com.VerificacaoEmail.ValidarEmail;
 import com.model.Model;
 
@@ -16,8 +16,12 @@ public class Controller{
      //--------------------------nome do usuario-----------------------------------
     public int setNome(String nome) {
         this.nome = nome;
-        if (this.nome.length() > 15 || this.nome.length() < 5) { 
-            JOptionPane.showMessageDialog(null, "O nome deve pelo menos estar entre 5 e 15 caracteres!", "Erro", JOptionPane.ERROR_MESSAGE);
+        if (this.nome.length() < 3 ||  this.nome.length() > 15 ) { 
+            JOptionPane.showMessageDialog(null, "O nome deve pelo menos estar entre 3 e 15 caracteres!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return 0;
+        }
+        else if (this.nome.matches(".*\\d.*") || this.nome.matches(".*[^a-zA-Z0-9].*")) {
+            JOptionPane.showMessageDialog(null, "O nome não pode conter números ou caracteres especiais!", "Erro", JOptionPane.ERROR_MESSAGE);
             return 0;
         }
         return 1;
@@ -39,12 +43,8 @@ public class Controller{
         }
         return 1;
     }
-    public String getEmail() {
-        return email;
-    }
+   
 
-    
-    
      //--------------------------senha do usuario -----------------------------------
     public int setSenha(String senha) {
         this.senha = senha;
@@ -59,7 +59,12 @@ public class Controller{
             }
         }
         return 1;
-    }    
+    }  
+    public int Criptografia(String senha) {
+        String hash1 = BCrypt.hashpw(senha, BCrypt.gensalt());
+        return 0;
+        
+    }  
     //--------------------------Filtrando parametros -----------------------------------fim
     
     //----------------------inserindo dados----------------inicio
