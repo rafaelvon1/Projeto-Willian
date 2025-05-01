@@ -60,9 +60,9 @@ public class Controller{
         }
         return 1;
     }  
-    public int Criptografia(String senha) {
-        String hash1 = BCrypt.hashpw(senha, BCrypt.gensalt());
-        return 0;
+    public void Criptografia() {
+        this.senha = BCrypt.hashpw(this.senha, BCrypt.gensalt());
+        
         
     }  
     //--------------------------Filtrando parametros -----------------------------------fim

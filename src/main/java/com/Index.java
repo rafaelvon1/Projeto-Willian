@@ -68,6 +68,15 @@ public class Index {
         
     }
     
+    public int inserindo(String nome, String email, String senha){
+        controller.Criptografia();
+        JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+        controller.setInserir();
+            
+
+        return 1;
+        
+    }
     public void VerificacaoExito(String email, String senha){
         if (controller.setEmail(email) == 0 || controller.setSenha(senha) == 0) {
             JOptionPane.showMessageDialog(null, "nada inserido no bando de dados", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -80,18 +89,8 @@ public class Index {
             
         }
         
-        
-
+    
         //verificar se os baguio existe no banco de dados la fio
-    }
-
-    public int inserindo(String nome, String email, String senha){
-        JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-        controller.setInserir();
-            
-
-        return 1;
-        
     }
     
 }
