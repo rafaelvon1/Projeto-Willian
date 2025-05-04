@@ -80,7 +80,7 @@ public class Controller{
     }
     public int verificarSenha(String email){
         Model verificar = new Model(); 
-        return verificar.autenticar(email , this.senha);
+        return verificar.autenticar(email , senha);
     }
     public int enviarCodigo(String email) {
         ValidarEmail validar = new ValidarEmail(); 

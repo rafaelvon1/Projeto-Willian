@@ -62,6 +62,7 @@ public class TelaLogin extends JFrame {
                        
                     }
                     else{
+                        System.out.println("passou da formatação");
                         if (index.VerificacaoExitoSenha(email) == 0 || index.VerificacaoExitoEmail() == 0) {
                             JOptionPane.showMessageDialog(null, "Senha ou email incorretos", "Erro", JOptionPane.ERROR_MESSAGE);
                             return;

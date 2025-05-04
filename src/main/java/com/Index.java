@@ -81,15 +81,19 @@ public class Index {
         
     }
     public int VerificacaoExitoEmail(){
+        System.out.println("chamou class email");
         if (controller.verificarApenasEmail() == 1){
             //email confirmado
+            System.out.println("email confirmado");
             return 1;
             
         }
         return 0;
     }
     public int VerificacaoExitoSenha(String email){
+        System.out.println("chamou class senha");
         if (controller.verificarSenha(email) == 1){
+            System.out.println("senha confirmado");
         //     JOptionPane.showMessageDialog(null, "Senha ja existe", "erro!", JOptionPane.ERROR_MESSAGE);
             return 1;
             
