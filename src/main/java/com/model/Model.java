@@ -1,5 +1,6 @@
 package com.model;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import com.connect.Conexao;
 
@@ -23,18 +24,26 @@ public class Model {
         }
         
     }
-    public void verificar(String email, String senha) {
-        String sql = "SELECT * FROM Usuarios WHERE email = ? AND senha = ?";
+    public int verificar(String email) {
+        String sql = "SELECT email FROM Usuarios WHERE email = ?";
 
         PreparedStatement ps = null; 
+        ResultSet rs = null;
         try {
             ps = Conexao.getConnection().prepareStatement(sql);  
-            ps.setString(1, email); 
-            ps.setString(2, senha);  
-            ps.execute();  
-            System.out.println("Login realizado com sucesso!");  
+            ps.setString(1, email);  
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                System.out.println("Email já cadastrado!");  
+                return 1; 
+            } else {
+                System.out.println("Email disponível!");  
+            }
+            return 0;
         } catch (SQLException e) {
-            System.out.println("Erro ao logar: " + e.getMessage()); 
+            
+            System.out.println("Erro ao verificar: " + e.getMessage());
         }
+        return 0;
     }
 }

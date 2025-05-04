@@ -63,21 +63,29 @@ public class TelaCadastro extends JFrame {
                 }
                 else{
                     com.Index index = new Index();
-                    if (index.FormatandoDados(nome,email, senha) == 0) {
+                    if (index.FormatandoDadosCadastro(nome,email, senha) == 0) {
                        
                         
                     }
                     else{
-                        index.enviarCodigo(email);
-                        index.TelaPopup(email);
-                        if (index.validarCodigo() == 0) {
+                        System.out.println(index.VerificacaoExitoEmail(email));
+                        if (index.VerificacaoExitoEmail(email) == 1) {
+                            
                             
                         }
                         else{
-                            index.inserindo(nome, email, senha);
-                            TelaLogin telaLogin = new TelaLogin();
-                            telaLogin.Login();
-                            dispose();
+                            index.enviarCodigo(email);
+                            index.TelaPopup(email);
+                            if (index.validarCodigo() == 0) {
+                            
+                            }
+                            else{
+                                
+                                index.inserindo(nome, email, senha);
+                                TelaLogin telaLogin = new TelaLogin();
+                                telaLogin.Login();
+                                dispose();
+                            }
                         }
                         
 

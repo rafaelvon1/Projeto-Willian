@@ -56,9 +56,28 @@ public class TelaLogin extends JFrame {
                     JOptionPane.showMessageDialog(null, "Preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                
+                else{
+                    com.Index index = new Index();
+                    if (index.FormatandoDadosLogin(email) == 0) {
+                       
+                        
+                    }
+                    else{
+                        if (index.VerificacaoExitoEmail(email) == 1) {
+                            
+                            
+                        }
+                        else{
+                            index.enviarCodigo(email);
+                            index.TelaPopup(email);
+                            if (index.validarCodigo() == 0) {
+                            
+                            }
+                        }
+                    }
+                }   
                 com.Index index = new Index();
-                index.VerificacaoExito(email, senha);
+                
                 
                 
             }

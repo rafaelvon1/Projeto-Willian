@@ -29,15 +29,18 @@ public class Index {
     //----------------verificaçoes e acesso ao banco de dados e etc----------------
     Controller controller = new Controller();
     
-    public int FormatandoDados(String nome, String email, String senha){
+    public int FormatandoDadosCadastro(String nome, String email, String senha){
         if (controller.setNome(nome)   == 0 || controller.setEmail(email) == 0 || controller.setSenha(senha) == 0) {
             JOptionPane.showMessageDialog(null, "nada inserido no bando de dados", "Erro", JOptionPane.ERROR_MESSAGE);
             return 0;
         }
-        else{
-
+        return 1;
+    }
+    public int FormatandoDadosLogin(String email){
+        if (controller.setEmail(email) == 0 ) {
+            JOptionPane.showMessageDialog(null, "email invalido", "Erro", JOptionPane.ERROR_MESSAGE);
+            return 0;
         }
-        
         return 1;
     }
 
@@ -77,20 +80,15 @@ public class Index {
         return 1;
         
     }
-    public void VerificacaoExito(String email, String senha){
-        if (controller.setEmail(email) == 0 || controller.setSenha(senha) == 0) {
-            JOptionPane.showMessageDialog(null, "nada inserido no bando de dados", "Erro", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Login realizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-            controller.verificar();
-            
+    public int VerificacaoExitoEmail(String email){
+        System.out.println("no verificar");
+        System.out.println( controller.verificar() == 1);
+        if (controller.verificar() == 1){
+            JOptionPane.showMessageDialog(null, "Email ja existe", "erro!", JOptionPane.ERROR_MESSAGE);
+            return 1;
             
         }
-        
-    
-        //verificar se os baguio existe no banco de dados la fio
+        return 0;
     }
     
 }
