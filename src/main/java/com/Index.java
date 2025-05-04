@@ -91,7 +91,7 @@ public class Index {
     public int VerificacaoExitoSenha(String email){
         if (controller.verificarSenha(email) == 1){
         //     JOptionPane.showMessageDialog(null, "Senha ja existe", "erro!", JOptionPane.ERROR_MESSAGE);
-        //     return 1;
+            return 1;
             
         }
         return 0;

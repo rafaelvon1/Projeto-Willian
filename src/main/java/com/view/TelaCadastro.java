@@ -70,10 +70,8 @@ public class TelaCadastro extends JFrame {
                     else{
                        
                         if (index.VerificacaoExitoEmail() == 1) {
-                            
+                            System.out.println("Email ja existe");
                             JOptionPane.showMessageDialog(null, "Email Digitado ja existe", "Erro", JOptionPane.ERROR_MESSAGE);
-                        }
-                        else if (index.VerificacaoExitoEmail() == 0) {
                         }
                         else{
                             index.enviarCodigo(email);
@@ -82,7 +80,8 @@ public class TelaCadastro extends JFrame {
                             
                             }
                             else{
-                                
+                                System.out.println("senha:" + senha);
+                                System.out.println("email:" + email);
                                 index.inserindo(nome, email, senha);
                                 TelaLogin telaLogin = new TelaLogin();
                                 telaLogin.Login();
