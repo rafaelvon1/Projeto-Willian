@@ -60,12 +60,11 @@ public class TelaLogin extends JFrame {
                     com.Index index = new Index();
                     if (index.FormatandoDadosLogin(email) == 0) {
                        
-                        
                     }
                     else{
-                        if (index.VerificacaoExitoEmail(email) == 1) {
-                            
-                            
+                        if (index.VerificacaoExitoSenha(email) == 0 || index.VerificacaoExitoEmail() == 0) {
+                            JOptionPane.showMessageDialog(null, "Senha ou email incorretos", "Erro", JOptionPane.ERROR_MESSAGE);
+                            return;
                         }
                         else{
                             index.enviarCodigo(email);
@@ -73,13 +72,12 @@ public class TelaLogin extends JFrame {
                             if (index.validarCodigo() == 0) {
                             
                             }
+                            else{
+                                System.out.println("usuario logado com sucesso!");
+                            }
                         }
                     }
-                }   
-                com.Index index = new Index();
-                
-                
-                
+                }     
             }
         });
 

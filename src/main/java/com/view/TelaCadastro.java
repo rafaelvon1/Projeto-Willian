@@ -68,10 +68,12 @@ public class TelaCadastro extends JFrame {
                         
                     }
                     else{
-                        System.out.println(index.VerificacaoExitoEmail(email));
-                        if (index.VerificacaoExitoEmail(email) == 1) {
+                       
+                        if (index.VerificacaoExitoEmail() == 1) {
                             
-                            
+                            JOptionPane.showMessageDialog(null, "Email Digitado ja existe", "Erro", JOptionPane.ERROR_MESSAGE);
+                        }
+                        else if (index.VerificacaoExitoEmail() == 0) {
                         }
                         else{
                             index.enviarCodigo(email);

@@ -74,9 +74,13 @@ public class Controller{
     }
     //----------------------inserindo dados----------------fim
     //----------------------verificando dados----------------inicio
-    public int verificar(){
+    public int verificarApenasEmail(){
         Model verificar = new Model(); 
         return verificar.verificar(this.email);
+    }
+    public int verificarSenha(String email){
+        Model verificar = new Model(); 
+        return verificar.autenticar(email , this.senha);
     }
     public int enviarCodigo(String email) {
         ValidarEmail validar = new ValidarEmail(); 

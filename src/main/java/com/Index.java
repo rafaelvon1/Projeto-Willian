@@ -80,15 +80,20 @@ public class Index {
         return 1;
         
     }
-    public int VerificacaoExitoEmail(String email){
-        System.out.println("no verificar");
-        System.out.println( controller.verificar() == 1);
-        if (controller.verificar() == 1){
-            JOptionPane.showMessageDialog(null, "Email ja existe", "erro!", JOptionPane.ERROR_MESSAGE);
+    public int VerificacaoExitoEmail(){
+        if (controller.verificarApenasEmail() == 1){
+            //email confirmado
             return 1;
             
         }
         return 0;
     }
-    
+    public int VerificacaoExitoSenha(String email){
+        if (controller.verificarSenha(email) == 1){
+        //     JOptionPane.showMessageDialog(null, "Senha ja existe", "erro!", JOptionPane.ERROR_MESSAGE);
+        //     return 1;
+            
+        }
+        return 0;
+    }
 }
