@@ -78,7 +78,7 @@ public class Controller{
         Model verificar = new Model(); 
         return verificar.verificar(this.email);
     }
-    public int verificarSenha(String email){
+    public int verificarSenha(String email, String senha) {
         Model verificar = new Model(); 
         return verificar.autenticar(email , senha);
     }

@@ -90,9 +90,9 @@ public class Index {
         }
         return 0;
     }
-    public int VerificacaoExitoSenha(String email){
+    public int VerificacaoExitoSenha(String email, String senha){
         System.out.println("chamou class senha");
-        if (controller.verificarSenha(email) == 1){
+        if (controller.verificarSenha(email, senha) == 1){
             System.out.println("senha confirmado");
         //     JOptionPane.showMessageDialog(null, "Senha ja existe", "erro!", JOptionPane.ERROR_MESSAGE);
             return 1;
