@@ -56,8 +56,7 @@ public class TelaCadastro extends JFrame {
                 String email = textEmail.getText().toLowerCase();
                 String senha = new String(textSenha.getPassword());
                 
-                if (
-                    nome.isEmpty() || email.isEmpty() || senha.isEmpty()) {
+                if (nome.isEmpty() || email.isEmpty() || senha.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
                     
                 }
