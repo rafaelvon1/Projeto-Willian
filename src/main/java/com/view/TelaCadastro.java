@@ -1,9 +1,24 @@
 package com.view;
-import javax.swing.*;
-import com.Index;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+
+import com.Index;
 
 public class TelaCadastro extends JFrame {
     public void Cadastro() {
@@ -41,6 +56,10 @@ public class TelaCadastro extends JFrame {
         estilizarLabel(labelSenha);
         JPasswordField textSenha = new JPasswordField(20);
 
+        JLabel labelConfirmarSenha = new JLabel("Confirme a Senha:");
+        estilizarLabel(labelConfirmarSenha);
+        JPasswordField textConfirmarSenha = new JPasswordField(20);
+
         // Botões
         JButton btnCadastrar = new JButton("Cadastrar");
         estilizarBotao(btnCadastrar);
@@ -55,10 +74,14 @@ public class TelaCadastro extends JFrame {
                 String nome = textNome.getText().toLowerCase();
                 String email = textEmail.getText().toLowerCase();
                 String senha = new String(textSenha.getPassword());
+                String Confirmarsenha = new String(textConfirmarSenha.getPassword());
                 
-                if (nome.isEmpty() || email.isEmpty() || senha.isEmpty()) {
+                if (nome.isEmpty() || email.isEmpty() || senha.isEmpty() || Confirmarsenha.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
                     
+                }
+                if (!Confirmarsenha.equals(senha)){
+                    JOptionPane.showMessageDialog(null, "A Senha nao confere!", "Erro", JOptionPane.ERROR_MESSAGE);
                 }
                 else{
                     com.Index index = new Index();
@@ -121,6 +144,9 @@ public class TelaCadastro extends JFrame {
         panel.add(Box.createVerticalStrut(10));
         panel.add(labelSenha);
         panel.add(textSenha);
+        panel.add(Box.createVerticalStrut(20));
+        panel.add(labelConfirmarSenha);
+        panel.add(textConfirmarSenha);
         panel.add(Box.createVerticalStrut(20));
         panel.add(btnCadastrar);
         panel.add(Box.createVerticalStrut(10));
