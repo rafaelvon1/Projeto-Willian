@@ -52,7 +52,7 @@ public class Model {
     String sql = "SELECT senha FROM Usuarios WHERE email = ?";
     PreparedStatement ps = null;
     ResultSet rs = null;
-
+        System.out.println("dentro do autenticar: " + senhaDigitada);
     try {
         ps = Conexao.getConnection().prepareStatement(sql);
         ps.setString(1, email);

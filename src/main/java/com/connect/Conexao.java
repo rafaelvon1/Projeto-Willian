@@ -4,11 +4,12 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Conexao {
-    private static final String URL = "jdbc:mysql://localhost:3306/ProjetoJava";
-    private static final String USER = "root";
-    private static final String PASSWORD = "";
+    private static final String URL = System.getenv("URL_Java");
+    private static final String USER = System.getenv("USER_Java");
+    private static final String PASSWORD = System.getenv("PASSWORD_Java");
     
     public static Connection  getConnection() {
+        
         try {
             // Carrega o driver JDBC
             Class.forName("com.mysql.cj.jdbc.Driver");
