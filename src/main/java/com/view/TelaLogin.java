@@ -1,11 +1,30 @@
 package com.view;
-import javax.swing.*;
-import com.Index;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.Font;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+
+import com.Index;
+
 public class TelaLogin extends JFrame {
+    /**
+     * 
+     */
     public void Login() {
         // Configuração da janela
         setTitle("login");
@@ -19,7 +38,7 @@ public class TelaLogin extends JFrame {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBackground(Color.DARK_GRAY);
-        panel.setBorder(BorderFactory.createEmptyBorder(40, 50, 40, 50));
+        panel.setBorder(BorderFactory.createEmptyBorder(50, 60, 50, 60));
 
         // Título
         JLabel titleLabel = new JLabel("Login");
@@ -40,6 +59,10 @@ public class TelaLogin extends JFrame {
         // Botões
         JButton btnEnviar = new JButton("Enviar");
         estilizarBotao(btnEnviar);
+
+        JLabel lblEsqueceuSenha = new JLabel("<html><a href=''>Esqueceu a senha?</a></html>");
+        lblEsqueceuSenha.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
 
         JButton btnVoltar = new JButton("Voltar");
         estilizarBotao(btnVoltar);
@@ -91,6 +114,17 @@ public class TelaLogin extends JFrame {
             }
         });
 
+
+        // açao do link "Esqueceu a senha?"
+        lblEsqueceuSenha.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                // Aqui você pode adicionar a lógica para lidar com o clique no link
+                JOptionPane.showMessageDialog(null, "Redirecionando para recuperação de senha...", "Recuperação de Senha", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+        
+
+
         // Adicionar componentes ao painel
         panel.add(titleLabel);
         panel.add(Box.createVerticalStrut(20));
@@ -99,6 +133,8 @@ public class TelaLogin extends JFrame {
         panel.add(Box.createVerticalStrut(10));
         panel.add(labelSenha);
         panel.add(textSenha);
+        panel.add(Box.createVerticalStrut(1));
+        panel.add(lblEsqueceuSenha);
         panel.add(Box.createVerticalStrut(30));
         panel.add(btnEnviar);
         panel.add(Box.createVerticalStrut(10));

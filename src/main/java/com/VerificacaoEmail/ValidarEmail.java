@@ -1,7 +1,8 @@
 package com.VerificacaoEmail;
+import java.util.Random;
+
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
-import java.util.Random;
 
 public class ValidarEmail {
     public  Integer validar(String email) {
@@ -15,7 +16,7 @@ public class ValidarEmail {
             conta.setAuthentication(System.getenv("EMAIL"), System.getenv("APP_PASSWORD")); // Use App Password se necessário
             conta.setStartTLSRequired(true);
             conta.setFrom(System.getenv("EMAIL"));
-            conta.setSubject("Teste de Email via Java");
+            conta.setSubject("Codigo de Verificação");
             conta.setMsg("seu codigo é: " + numeroInteiro);
             conta.addTo(email);
             conta.send();
