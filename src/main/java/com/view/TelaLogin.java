@@ -38,7 +38,7 @@ public class TelaLogin extends JFrame {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBackground(Color.DARK_GRAY);
-        panel.setBorder(BorderFactory.createEmptyBorder(40, 50, 40, 50));
+        panel.setBorder(BorderFactory.createEmptyBorder(50, 60, 50, 60));
 
         // Título
         JLabel titleLabel = new JLabel("Login");

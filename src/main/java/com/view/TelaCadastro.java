@@ -80,7 +80,7 @@ public class TelaCadastro extends JFrame {
                     JOptionPane.showMessageDialog(null, "Preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
                     
                 }
-                if (!Confirmarsenha.equals(senha)){
+                else if (!Confirmarsenha.equals(senha)){
                     JOptionPane.showMessageDialog(null, "A Senha nao confere!", "Erro", JOptionPane.ERROR_MESSAGE);
                 }
                 else{
