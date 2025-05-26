@@ -83,5 +83,21 @@ public class Model {
         }
     }
 }
+    public int Alterar(String email, String senhaALterada) {
+            String sql = "update Usuarios set senha = ? where email = ?";
 
+            PreparedStatement ps = null; 
+            try {
+                ps = Conexao.getConnection().prepareStatement(sql);  
+                ps.setString(1, senhaALterada);
+                ps.setString(2, email);  
+                ps.execute();  
+                System.out.println("Conexão: " + (System.currentTimeMillis()) + "ms");
+                System.out.println("Senha Alterada!");  
+                
+            } catch (SQLException e) {
+                System.out.println("Erro ao cadastrar: " + e.getMessage()); 
+            }
+        return 0;
+    }
 }

@@ -1,6 +1,8 @@
 package com.controller;
 import javax.swing.JOptionPane;
+
 import org.mindrot.jbcrypt.BCrypt;
+
 import com.VerificacaoEmail.ValidarEmail;
 import com.model.Model;
 
@@ -31,7 +33,7 @@ public class Controller{
     public int setEmail(String email) {
          this.email = email;
          if (this.email.length() < 16) {
-            JOptionPane.showMessageDialog(null, "O email invalido!", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "email invalido!", "Erro", JOptionPane.ERROR_MESSAGE);
             return 0;
     
         }
@@ -73,6 +75,16 @@ public class Controller{
         cadastro.cadastrar(this.nome, this.email, this.senha);
     }
     //----------------------inserindo dados----------------fim
+
+
+    public void AlterarSenhaController(){ 
+        Model alterar = new Model(); 
+        alterar.Alterar(this.email, this.senha);
+    }
+
+
+
+
     //----------------------verificando dados----------------inicio
     public int verificarApenasEmail(){
         Model verificar = new Model(); 
