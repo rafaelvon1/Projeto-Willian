@@ -6,7 +6,7 @@ import java.sql.SQLException;
 public class Conexao {
     private static final String URL = System.getenv("URL_Java");
     private static final String USER = System.getenv("USER_Java");
-    private static final String PASSWORD = System.getenv("PASSWORD_Java");
+    private static final String PASSWORD = "";
     
     public static Connection  getConnection() {
         

@@ -21,13 +21,13 @@ import javax.swing.SwingUtilities;
 
 import com.Index;
 
-public class TelaLogin extends JFrame {
+public class TrocarSenha extends JFrame {
     /**
      * 
      */
-    public void Login() {
+    public void Trocar() {
         // Configuração da janela
-        setTitle("login");
+        setTitle("Recuperar Senha");
         setSize(800, 700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -41,11 +41,15 @@ public class TelaLogin extends JFrame {
         panel.setBorder(BorderFactory.createEmptyBorder(50, 60, 50, 60));
 
         // Título
-        JLabel titleLabel = new JLabel("Login");
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
-        titleLabel.setForeground(Color.WHITE);
-        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-
+        JLabel titleRecuperar = new JLabel("Recuperar Senha");
+        titleRecuperar.setFont(new Font("Arial", Font.BOLD, 24));
+        titleRecuperar.setForeground(Color.WHITE);
+        titleRecuperar.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JLabel titleAlterar = new JLabel("Alterar Senha");
+        titleAlterar.setFont(new Font("Arial", Font.BOLD, 24));
+        titleAlterar.setForeground(Color.WHITE);
+        titleAlterar.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
         // Campos de entrada
        
         JLabel labelEmail = new JLabel("Email:");
@@ -60,6 +64,9 @@ public class TelaLogin extends JFrame {
         JButton btnEnviar = new JButton("Enviar");
         estilizarBotao(btnEnviar);
 
+        JButton btnAlterar = new JButton("Alterar");
+        estilizarBotao(btnAlterar);
+
         JLabel lblEsqueceuSenha = new JLabel("<html><a href=''>Esqueceu a senha?</a></html>");
         lblEsqueceuSenha.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
@@ -72,11 +79,11 @@ public class TelaLogin extends JFrame {
         btnEnviar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String email = textEmail.getText().toLowerCase();
-                String senha = new String(textSenha.getPassword());
+                
                 
                 if (
-                    email.isEmpty() || senha.isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
+                    email.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Preencha o campo!", "Erro", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 else{
@@ -85,21 +92,68 @@ public class TelaLogin extends JFrame {
                        
                     }
                     else{
-                        System.out.println("passou da formatação");
-                        if (index.VerificacaoExitoSenha(email, senha) == 0 || index.VerificacaoExitoEmail() == 0) {
-                            JOptionPane.showMessageDialog(null, "Senha ou email incorretos", "Erro", JOptionPane.ERROR_MESSAGE);
+                        if(index.VerificacaoExitoEmail() == 0) 
+                        {
+                            JOptionPane.showMessageDialog(null, "Email nao encontrado no banco de dados", "Erro", JOptionPane.ERROR_MESSAGE);
                             return;
                         }
-                        else{
-                            index.enviarCodigo(email);
-                            index.TelaPopup(email);
-                            if (index.validarCodigo() == 0) {
+                        else
+                        {
+                            System.out.println("passou da formatação");
+                        
+                        index.enviarCodigo(email);
+                        index.TelaPopup(email);
+                        if (index.validarCodigo() == 0) {
                             
-                            }
-                            else{
-                                System.out.println("usuario logado com sucesso!");
-                            }
                         }
+                        else{
+                            // Remove o campo de e-mail da tela
+                            panel.removeAll();
+                            
+                            // Adiciona campo para nova senha
+                            panel.add(titleAlterar);
+                            panel.add(Box.createVerticalStrut(20));
+                            panel.add(labelSenha);
+                            panel.add(textSenha);
+                            panel.add(Box.createVerticalStrut(30));
+                            panel.add(btnAlterar);
+                            panel.add(Box.createVerticalStrut(10));
+                            panel.add(btnVoltar);
+
+                            // Atualiza visual
+                            panel.revalidate();
+                            panel.repaint();
+
+
+
+
+                            btnAlterar.addActionListener(new ActionListener() {
+                                public void actionPerformed(ActionEvent e) {
+                                    String senha = new String(textSenha.getPassword());
+                                    if (senha.isEmpty()) {
+                                        JOptionPane.showMessageDialog(null, "Preencha o campo!", "Erro", JOptionPane.ERROR_MESSAGE);
+                                        return;
+                                    }
+                                    else{
+                                        if (index.FormatandoDadosRedefinirSenha(senha) == 0) {
+                                            JOptionPane.showMessageDialog(null, "Senha invalida", "Erro", JOptionPane.ERROR_MESSAGE);
+                                        }
+                                        else{
+                                            index.AlterarSenha();
+                                            TelaLogin login = new TelaLogin();
+                                            login.Login(); 
+                                            dispose();
+                                        }
+                                    }
+                                }
+                            });
+
+
+                        }
+
+                        }
+                        
+                        
                     }
                 }     
             }
@@ -108,35 +162,25 @@ public class TelaLogin extends JFrame {
         // Ação do botão "Voltar"
         btnVoltar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                TelaPrincipal telaPrincipal = new TelaPrincipal();
-                telaPrincipal.Principal();
+                TelaLogin login = new TelaLogin();
+                login.Login();
+                
                 dispose();
             }
         });
 
 
         // açao do link "Esqueceu a senha?"
-        lblEsqueceuSenha.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                com.Index Index = new Index();
-                Index.TrocarSenha();
-               
-                
-            }
-        });
+        
         
 
 
         // Adicionar componentes ao painel
-         panel.add(titleLabel);
+        panel.add(titleRecuperar);
         panel.add(Box.createVerticalStrut(20));
         panel.add(labelEmail);
         panel.add(textEmail);
-        panel.add(Box.createVerticalStrut(10));
-        panel.add(labelSenha);
-        panel.add(textSenha);
-        panel.add(Box.createVerticalStrut(1));
-        panel.add(lblEsqueceuSenha);
+        
         panel.add(Box.createVerticalStrut(30));
         panel.add(btnEnviar);
         panel.add(Box.createVerticalStrut(10));
