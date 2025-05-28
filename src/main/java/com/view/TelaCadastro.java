@@ -104,7 +104,7 @@ public class TelaCadastro extends JFrame {
                             else{
                                 System.out.println("senha:" + senha);
                                 System.out.println("email:" + email);
-                                index.inserindo(nome, email, senha);
+                                index.inserindo();
                                 TelaLogin telaLogin = new TelaLogin();
                                 telaLogin.Login();
                                 dispose();

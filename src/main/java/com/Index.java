@@ -1,10 +1,13 @@
 package com;
-import com.view.TelaPrincipal;
-import com.view.TelaLogin;
-import com.view.TelaPopupEmail;
 import javax.swing.JOptionPane;
+
 import com.controller.Controller;
 import com.view.TelaCadastro;
+import com.view.TelaLogin;
+import com.view.TelaPopupEmail;
+import com.view.TelaPrincipal;
+import com.view.TrocarSenha;
+
 //import controller.Controller;
 public class Index {
     private int codigo;
@@ -24,6 +27,10 @@ public class Index {
         telaCadastro.Cadastro();
 
     }
+    public void TrocarSenha(){
+        TrocarSenha trocarSenha = new TrocarSenha();
+        trocarSenha.Trocar();
+    }
 
     
     //----------------verificaçoes e acesso ao banco de dados e etc----------------
@@ -39,6 +46,13 @@ public class Index {
     public int FormatandoDadosLogin(String email){
         if (controller.setEmail(email) == 0 ) {
             JOptionPane.showMessageDialog(null, "email invalido", "Erro", JOptionPane.ERROR_MESSAGE);
+            return 0;
+        }
+        return 1;
+    }
+    public int FormatandoDadosRedefinirSenha(String senha){
+        if (controller.setSenha(senha) == 0) {
+            JOptionPane.showMessageDialog(null, "senha invalida", "Erro", JOptionPane.ERROR_MESSAGE);
             return 0;
         }
         return 1;
@@ -71,7 +85,7 @@ public class Index {
         
     }
     
-    public int inserindo(String nome, String email, String senha){
+    public int inserindo(){
         controller.Criptografia();
         JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
         controller.setInserir();
@@ -80,6 +94,15 @@ public class Index {
         return 1;
         
     }
+
+    public void AlterarSenha(){
+        controller.Criptografia();
+        controller.AlterarSenhaController();
+        
+    }
+
+
+    
     public int VerificacaoExitoEmail(){
         System.out.println("chamou class email");
         if (controller.verificarApenasEmail() == 1){
